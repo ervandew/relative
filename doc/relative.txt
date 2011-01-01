@@ -1,0 +1,86 @@
+*relative.txt*
+
+-----------------------------------------------------------------------------
+Relative                                         *relative*
+
+  Overview                           |relative-overview|
+  Commands                           |relative-commands|
+
+-----------------------------------------------------------------------------
+Overview                                         *relative-overview*
+
+This plugin provides command which allow you to perform various actions
+relative to the current file's location allowing you to split, edit, read, etc
+files in the vicinity of the current file without having to type the full path.
+
+For example, say your current working directory is your home directory and you
+run the following command: >
+
+  $ vim some/long/path/to/file1.txt
+>
+
+Now say you want to split on file2 which is in that same directory. Normally
+you would have to type: >
+
+  :split some/long/path/to/file2.txt
+>
+
+But with the relative plugin you simply type: >
+
+  :SplitRelative file2.txt
+>
+
+or even shorter: >
+
+  :SplitR file2.txt
+>
+
+The same concept applies for edit, tabnew, read, vimgrep, cd/lcd, etc.
+
+-----------------------------------------------------------------------------
+Commands                                         *relative-commands*
+
+Note: These command names can be a bit verbose to be explicit in their nature
+and to ensure uniqueness, but remember that you only need to type enough of
+the command that it is unique, which means you should be able to drop the
+'elative' on each (:SplitR, EditR, etc.), and in most cases even more.
+
+Enabling |'wildmenu'| support (set wildmenu wildmod=longest:full,full) can
+also help you quickly tab your way to the command you want, reducing
+keystrokes.
+
+If you prefer, you can also define your own abbreviated commands in an 'after'
+plugin, like this example which creates :SR as a shortcut to :SplitRelative: >
+
+  $ vim .vim/after/plugin/myrelative.vim
+
+  command -nargs=+
+    \ -complete=customlist,relative#CommandCompleteRelative
+    \ SR :SplitRelative <args>
+>
+
+Here is a full list of the available commands, each behaving like the original
+vim counterpart, but supporting arguments, and completion of those arguments,
+which are relative to the current file's location:
+
+  *:EditRelative*
+  *:SplitRelative*
+  *:TabnewRelative*
+  *:ReadRelative*
+  *:ArgsRelative*
+  *:ArgAddRelative*
+  *:VimgrepRelative*
+  *:VimgrepAddRelative*
+  *:LvimgrepRelative*
+  *:LvimgrepAddRelative*
+  *:CdRelative*
+  *:LcdRelative*
+
+A couple non-relative commands are also included, which simply allow multiple
+files to be provided where the original vim counterpart only allows a single
+file:
+
+  *:Split*
+  *:Tabnew*
+
+vim:tw=78:ft=help:norl:
