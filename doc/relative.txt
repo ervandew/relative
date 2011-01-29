@@ -9,7 +9,7 @@ Relative                                         *relative*
 -----------------------------------------------------------------------------
 Overview                                         *relative-overview*
 
-This plugin provides command which allow you to perform various actions
+This plugin provides commands which allow you to perform various actions
 relative to the current file's location allowing you to split, edit, read, etc
 files in the vicinity of the current file without having to type the full path.
 
