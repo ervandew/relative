@@ -2,7 +2,7 @@
 " Version: 0.1
 "
 " License: {{{
-"   Copyright (c) 2005 - 2010, Eric Van Dewoestine
+"   Copyright (c) 2005 - 2012, Eric Van Dewoestine
 "   All rights reserved.
 "
 "   Redistribution and use of this software in source and binary forms, with
@@ -39,9 +39,14 @@
 " OpenFiles(arg) {{{
 " Opens one or more files using the supplied command.
 function! relative#OpenFiles(command, arg)
+  let command = a:command
+  " support vim's :tab prefix command for :Split
+  if histget("cmd") =~ '^\Mtab Split ' . a:arg
+    let command = 'tablast | tabnew'
+  endif
   let files = s:GetFiles('', a:arg)
   for file in files
-    exec a:command . ' ' . escape(s:Simplify(file), ' ')
+    exec command . ' ' . escape(s:Simplify(file), ' ')
   endfor
 endfunction " }}}
 
