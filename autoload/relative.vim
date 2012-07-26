@@ -150,7 +150,7 @@ endfunction " }}}
 " Gives focus to the window containing the buffer for the supplied file, or if
 " none, opens the file using the supplied command.
 function! s:GoToBufferWindowOrOpen(name, cmd)
-  let winnr = bufwinnr(bufnr('^' . a:name))
+  let winnr = bufwinnr(bufnr('^' . a:name . '$'))
   if winnr != -1
     exec winnr . "winc w"
   else
