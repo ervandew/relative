@@ -2,7 +2,7 @@
 " Version: 0.1
 "
 " License: {{{
-"   Copyright (c) 2005 - 2010, Eric Van Dewoestine
+"   Copyright (c) 2005 - 2015, Eric Van Dewoestine
 "   All rights reserved.
 "
 "   Redistribution and use of this software in source and binary forms, with
@@ -69,7 +69,7 @@ if exists(':Split') != 2
   command -nargs=+ -complete=file
     \ Split :call relative#OpenFiles('split', '<args>')
 endif
-if !exists(':Tabnew') != 2
+if exists(':Tabnew') != 2
   command -nargs=+ -complete=file
     \ Tabnew :call relative#OpenFiles('tablast | tabnew', '<args>')
 endif
