@@ -1,7 +1,11 @@
 SHELL=/bin/bash
 TEMP := $(shell mktemp)
 
-all:
+.PHONY: test
+
+all: test dist
+
+test:
 	@vim -c "redir! > $(TEMP) | echo findfile('autoload/vunit.vim', escape(&rtp, ' ')) | quit"
 	@if [ -n "$$(cat $(TEMP))" ] ; then \
 			vunit=$$(dirname $$(dirname $$(cat $(TEMP)))) ; \
@@ -17,9 +21,9 @@ all:
 	@rm $(TEMP)
 
 dist:
-	@rm relative.vba 2> /dev/null || true
+	@rm relative.vmb 2> /dev/null || true
 	@vim -c 'r! git ls-files autoload doc plugin' \
-		-c '$$,$$d _' -c '%MkVimball relative.vba .' -c 'q!'
+		-c '$$,$$d _' -c '%MkVimball relative .' -c 'q!'
 
 clean:
 	@rm -R build 2> /dev/null || true
